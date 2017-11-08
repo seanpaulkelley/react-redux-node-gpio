@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_SURVEYS } from './types';
+import { FETCH_USER, FETCH_SURVEYS, SET_LIGHT } from './types';
+
+export const setLight = lightStatus => dispatch => {
+  dispatch({ type: SET_LIGHT, payload: lightStatus });
+};
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
