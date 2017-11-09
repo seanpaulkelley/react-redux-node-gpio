@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import * as actions from '../actions';
-import { setLight } from '../actions';
+import { setPin, getPin } from '../actions';
 import { bindActionCreators } from 'redux';
 
 class Light extends Component {
   render() {
     return (
       <div>
-        Light On: {this.props.light.on.toString()}
+        <span
+          className={`${this.props.light.real
+            ? 'amber lighten-4'
+            : 'grey lighten-2'}`}
+        >
+          Pin Status: {this.props.light.real ? 'On' : 'Off'}
+        </span>
+        <br />
+        <br />
         <button
           className="btn"
-          onClick={() => this.props.setLight(!this.props.light.on)}
+          onClick={() => this.props.setPin(!this.props.light.real)}
         >
-          Set Light!
+          Set Light to {!this.props.light.real ? 'On' : 'Off'}
         </button>
       </div>
     );
@@ -27,7 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   //whenever selectBook is called the result should be passed to all of our reducers
-  return bindActionCreators({ setLight: setLight }, dispatch);
+  return bindActionCreators({ setPin: setPin, getPin: getPin }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Light);

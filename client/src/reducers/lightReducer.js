@@ -1,10 +1,11 @@
-import { SET_LIGHT } from '../actions/types';
+import { SET_PIN, GET_PIN } from '../actions/types';
 
-export default function(state = { on: false }, action) {
-  console.log('state ', state);
+export default function(state = {}, action) {
   switch (action.type) {
-    case SET_LIGHT:
-      return { ...state, on: action.payload };
+    case SET_PIN:
+      return { ...state, real: action.payload };
+    case GET_PIN:
+      return { ...state, real: action.payload };
     default:
       return state;
   }
